@@ -6,12 +6,11 @@
 //
 
 import UIKit
-import CometChatUIKitSwift
+import CometChatUIKit
 import CometChatSDK
 
 class ThreadedMessagesVC: UIViewController {
     
-    var user: User?
     var parentMessage: BaseMessage?
     var bubbleView: UIView?
     
@@ -55,21 +54,6 @@ class ThreadedMessagesVC: UIViewController {
         messageComposer.set(controller: self)
         messageComposer.translatesAutoresizingMaskIntoConstraints = false
         return messageComposer
-    }()
-    
-    lazy var blockedUserView: UIView = {
-        let view = UIView(frame: .null)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    lazy var blockedUserLabel: UILabel = {
-        let label = UILabel(frame: .null)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = CometChatTheme.textColorSecondary
-        label.font = CometChatTypography.Body.regular
-        label.textAlignment = .center
-        return label
     }()
 
     override func viewDidLoad() {
@@ -166,12 +150,9 @@ class ThreadedMessagesVC: UIViewController {
         view.addSubview(parentMessageView)
         view.addSubview(messageListView)
         view.addSubview(composerView)
-        view.addSubview(blockedUserView)
-        view.addSubview(composerView)
-        blockedUserView.addSubview(blockedUserLabel)
         
         NSLayoutConstraint.activate([
-            parentMessageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            parentMessageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             parentMessageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             parentMessageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
@@ -179,26 +160,14 @@ class ThreadedMessagesVC: UIViewController {
             messageListView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             messageListView.topAnchor.constraint(equalTo: parentMessageView.bottomAnchor),
             
-            blockedUserView.topAnchor.constraint(equalTo: messageListView.bottomAnchor),
-            blockedUserView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            blockedUserView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            blockedUserView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -CometChatSpacing.Padding.p5),
-            
             composerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             composerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             composerView.topAnchor.constraint(equalTo: messageListView.bottomAnchor),
-            composerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            blockedUserLabel.topAnchor.constraint(equalTo: blockedUserView.topAnchor, constant: CometChatSpacing.Padding.p2),
-            blockedUserLabel.bottomAnchor.constraint(equalTo: blockedUserView.bottomAnchor, constant: -CometChatSpacing.Padding.p2),
-            blockedUserLabel.leadingAnchor.constraint(equalTo: blockedUserView.leadingAnchor, constant: CometChatSpacing.Padding.p5),
-            blockedUserLabel.trailingAnchor.constraint(equalTo: blockedUserView.trailingAnchor, constant: -CometChatSpacing.Padding.p5)
+            composerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        blockedUserLabel.text = "Can’t send a message to blocked \(user?.name ?? "")"
-        
-        if user?.blockedByMe == true{
-            self.composerView.removeFromSuperview()
-        }
     }
+
+    
+
 }

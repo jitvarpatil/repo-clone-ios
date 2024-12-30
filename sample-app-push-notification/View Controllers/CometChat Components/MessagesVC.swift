@@ -7,7 +7,7 @@
 
 import UIKit
 import CometChatSDK
-import CometChatUIKitSwift
+import CometChatUIKit
 
 class MessagesVC: UIViewController {
     
@@ -69,7 +69,6 @@ class MessagesVC: UIViewController {
             guard let this = self else { return }
             let threadedView = ThreadedMessagesVC()
             threadedView.parentMessage = message
-            threadedView.user = this.user
             threadedView.parentMessageView.controller = self
             threadedView.parentMessageView.set(parentMessage: message)
             this.navigationController?.pushViewController(threadedView, animated: true)
@@ -99,21 +98,6 @@ class MessagesVC: UIViewController {
         messageComposer.translatesAutoresizingMaskIntoConstraints = false
         return messageComposer
     }()
-    
-    lazy var blockedView: UIView = {
-        let view = UIView(frame: .null)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    lazy var blockedLabel: UILabel = {
-        let label = UILabel(frame: .null)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = CometChatTheme.textColorSecondary
-        label.font = CometChatTypography.Body.regular
-        label.textAlignment = .center
-        return label
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,16 +106,12 @@ class MessagesVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        CometChatUIEvents.addListener("messages-user-event-listener-\(randamID)", self)
-        CometChatUserEvents.addListener("messages-user-event-listener-\(randamID)", self)
-        CometChat.addGroupListener("messages-user-event-listener-\(randamID)", self)
+        CometChatUIEvents.addListener("CustomMessagesViewController-\(randamID)", self)
     }
     
     deinit {
         print("deinit called for CustomMessagesViewController")
-        CometChat.removeGroupListener("messages-user-event-listener-\(randamID)")
-        CometChatUIEvents.removeListener("messages-user-event-listener-\(randamID)")
-        CometChatUserEvents.removeListener("messages-user-event-listener-\(randamID)")
+        CometChatUIEvents.removeListener("CustomMessagesViewController-\(randamID)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -158,9 +138,7 @@ class MessagesVC: UIViewController {
         
         view.addSubview(headerView)
         view.addSubview(messageListView)
-        view.addSubview(blockedView)
         view.addSubview(composerView)
-        blockedView.addSubview(blockedLabel)
         
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -171,30 +149,13 @@ class MessagesVC: UIViewController {
             messageListView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             messageListView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            blockedView.topAnchor.constraint(equalTo: messageListView.bottomAnchor),
-            blockedView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            blockedView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            blockedView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -CometChatSpacing.Padding.p5),
-            
             composerView.topAnchor.constraint(equalTo: messageListView.bottomAnchor),
             composerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             composerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            composerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            blockedLabel.topAnchor.constraint(equalTo: blockedView.topAnchor, constant: CometChatSpacing.Padding.p2),
-            blockedLabel.bottomAnchor.constraint(equalTo: blockedView.bottomAnchor, constant: -CometChatSpacing.Padding.p2),
-            blockedLabel.leadingAnchor.constraint(equalTo: blockedView.leadingAnchor, constant: CometChatSpacing.Padding.p5),
-            blockedLabel.trailingAnchor.constraint(equalTo: blockedView.trailingAnchor, constant: -CometChatSpacing.Padding.p5)
+            composerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
         setTailViewToHeader()
-                
-        if user?.blockedByMe == true{
-            self.composerView.removeFromSuperview()
-            self.headerView.tailView.subviews.first?.subviews[0].isHidden = true
-            self.headerView.tailView.subviews.first?.subviews[1].isHidden = true
-            self.headerView.disable(userPresence: true)
-        }
     }
     
     func setTailViewToHeader() {
@@ -203,31 +164,8 @@ class MessagesVC: UIViewController {
         menu?.addArrangedSubview(infoButton)
         menu?.distribution = .fillEqually
         menu?.alignment = .fill
-        menu?.spacing = CometChatSpacing.Spacing.s4
-        menu?.widthAnchor.constraint(lessThanOrEqualToConstant: 120).isActive = true
+        menu?.widthAnchor.constraint(equalToConstant: 120).isActive = true
         headerView.set(tailView: menu ?? infoButton)
-    }
-    
-    func enableComposerWithCallButton() {
-        
-        if user != nil { blockedLabel.text = "Can’t send a message to blocked \(user?.name ?? "")" }
-        if group != nil { blockedLabel.text = "You'r no longer part of this group" }
-        
-        self.view.addSubview(composerView)
-        NSLayoutConstraint.activate([
-            composerView.topAnchor.constraint(equalTo: messageListView.bottomAnchor),
-            composerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            composerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            composerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        setTailViewToHeader()
-        self.headerView.disable(userPresence: false)
-    }
-    
-    func disableComposerWithCallButton() {
-        self.composerView.removeFromSuperview()
-        headerView.set(tailView: getInfoButton())
-        setTailViewToHeader()
     }
 }
 
@@ -243,54 +181,5 @@ extension MessagesVC: CometChatUIEventListener, UIGestureRecognizerDelegate {
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
-}
-
-//MARK: - GROUP EVENTS -
-extension MessagesVC: CometChatGroupDelegate {
     
-    func onGroupMemberBanned(action: ActionMessage, bannedUser: User, bannedBy: User, bannedFrom: Group) {
-        if bannedFrom.guid == group?.guid && CometChat.getLoggedInUser()?.uid == bannedUser.uid {
-            disableComposerWithCallButton()
-        }
-    }
-    
-    func onGroupMemberLeft(action: ActionMessage, leftUser: User, leftGroup: Group) {
-        if leftGroup.guid == group?.guid && CometChat.getLoggedInUser()?.uid == leftUser.uid {
-            disableComposerWithCallButton()
-        }
-    }
-    
-    func onGroupMemberKicked(action: ActionMessage, kickedUser: User, kickedBy: User, kickedFrom: Group) {
-        if kickedFrom.guid == group?.guid && CometChat.getLoggedInUser()?.uid == kickedUser.uid {
-            disableComposerWithCallButton()
-        }
-    }
-    
-    func onGroupMemberUnbanned(action: ActionMessage, unbannedUser: User, unbannedBy: User, unbannedFrom: Group) {
-        if unbannedFrom.guid == group?.guid && CometChat.getLoggedInUser()?.uid == unbannedUser.uid {
-            enableComposerWithCallButton()
-        }
-    }
-    
-    func onMemberAddedToGroup(action: ActionMessage, addedBy: User, addedUser: User, addedTo: Group) {
-        if addedTo.guid == group?.guid && CometChat.getLoggedInUser()?.uid == addedUser.uid {
-            enableComposerWithCallButton()
-        }
-    }
-    
-}
-
-// MARK: - User Block Events -
-extension MessagesVC : CometChatUserEventListener {
-    func ccUserBlocked(user: User) {
-        if user.uid == self.user?.uid {
-            disableComposerWithCallButton()
-        }
-    }
-    
-    func ccUserUnblocked(user: User) {
-        if user.uid == self.user?.uid {
-            enableComposerWithCallButton()
-        }
-    }
 }

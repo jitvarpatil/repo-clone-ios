@@ -7,7 +7,7 @@
 
 import UIKit
 import AVFoundation
-import CometChatUIKitSwift
+import CometChatUIKit
 import CometChatSDK
 
 class HomeScreenViewController: UITabBarController {
@@ -190,9 +190,7 @@ class HomeScreenViewController: UITabBarController {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         let menu = UIMenu(title: "\(appVersion ?? "v5.0.0")", children: [
             UIAction(title: "Create conversation", image: UIImage(systemName: "plus.bubble.fill"), handler: { _ in
-                let startNewConversationNVC = UINavigationController(rootViewController: CreateConversationVC())
-                startNewConversationNVC.hidesBottomBarWhenPushed = true
-                self.navigationController?.present(startNewConversationNVC, animated: true)
+                self.selectedIndex = 2 //switching to user tap
             }),
             UIAction(title: "\(CometChat.getLoggedInUser()?.name ?? "")", image: UIImage(systemName: "person.circle"), handler: { _ in
 

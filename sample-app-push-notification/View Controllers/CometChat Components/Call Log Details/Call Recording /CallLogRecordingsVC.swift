@@ -11,7 +11,7 @@ import Foundation
 
 import UIKit
 import CometChatSDK
-import CometChatUIKitSwift
+import CometChatUIKit
 import AVFoundation
 import AVKit
 import CometChatCallsSDK

@@ -7,7 +7,7 @@
 
 import UIKit
 import CometChatSDK
-import CometChatUIKitSwift
+import CometChatUIKit
 
 class UserDetailsViewController: UIViewController {
 

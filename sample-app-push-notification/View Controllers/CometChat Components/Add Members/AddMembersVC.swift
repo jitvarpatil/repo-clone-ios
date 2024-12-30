@@ -7,7 +7,7 @@
 
 import UIKit
 import CometChatSDK
-import CometChatUIKitSwift
+import CometChatUIKit
 
 @MainActor
 open class AddMembersVC: CometChatUsers {
@@ -19,8 +19,6 @@ open class AddMembersVC: CometChatUsers {
     private let addMembersText = "ADD_MEMBERS".localize()
 
     private var loadingIndicator: UIActivityIndicatorView?
-    
-    private var composerBottomAnchor: NSLayoutConstraint?
 
     let addMemberButton = UIButton()
     let addMemberButtonSeperator = UIView()
@@ -48,23 +46,6 @@ open class AddMembersVC: CometChatUsers {
         configureTableView()
         setupAddMemberButton()
         showLoadingView()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        let keyboardHeight = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
-        UIView.animate(withDuration: 0.2) {
-            self.composerBottomAnchor?.constant = -keyboardHeight
-            self.view.layoutIfNeeded()
-        }
-    }
-
-    @objc func keyboardWillHide(notification: NSNotification) {
-        UIView.animate(withDuration: 0.2) {
-            self.composerBottomAnchor?.constant = 0
-            self.view.layoutIfNeeded()
-        }
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -151,6 +132,7 @@ open class AddMembersVC: CometChatUsers {
             addMemberButtonView.heightAnchor.constraint(equalToConstant: 78),
             addMemberButtonView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             addMemberButtonView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            addMemberButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             addMemberButtonSeperator.heightAnchor.constraint(equalToConstant: 1),
             addMemberButtonSeperator.leadingAnchor.constraint(equalTo: addMemberButtonView.leadingAnchor),
@@ -162,44 +144,31 @@ open class AddMembersVC: CometChatUsers {
             addMemberButton.trailingAnchor.constraint(equalTo: addMemberButtonView.trailingAnchor, constant: -16),
             addMemberButton.bottomAnchor.constraint(equalTo: addMemberButtonView.bottomAnchor, constant: -22)
         ])
-        
-        composerBottomAnchor = addMemberButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        composerBottomAnchor?.isActive = true
     }
 
     // MARK: - Action Methods
     @objc private func didTapBackButton() {
         dismiss(animated: true)
     }
-    
-    @objc private func didAddMembersPressed() {
-        self.searchController.searchBar.endEditing(true)
-        self.searchController.searchBar.resignFirstResponder()
 
+    @objc private func didAddMembersPressed() {
         showLoader()
-        
         onSelection { [weak self] users in
             guard let self = self else { return }
             var groupMembers: [GroupMember] = []
-            
-            users.forEach {
-                if let uid = $0.uid {
-                    var member = GroupMember(UID: uid, groupMemberScope: .participant)
-                    member.name = $0.name ?? ""
+            let members = users.map {
+                var member: GroupMember?
+                member = GroupMember(UID: $0.uid ?? "", groupMemberScope: .participant)
+                member?.name = $0.name ?? ""
+                if let member = member{
                     groupMembers.append(member)
                 }
             }
-            
-            DispatchQueue.main.async {
-                self.addMembersViewModel?.addMembers(members: groupMembers)
-                self.addMembersViewModel?.unableToAddMember = { error in
-                    self.showAlert(with: error)
-                    self.hideLoader()
-                }
+            self.addMembersViewModel?.addMembers(members: groupMembers)
+            self.addMembersViewModel?.unableToAddMember = { error in
+                self.showAlert(with: error)
+                self.hideLoader()
             }
-        }
-        DispatchQueue.main.async {
-            self.dismiss(animated: true, completion: nil)
         }
     }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 import CometChatSDK
-import CometChatUIKitSwift
+import CometChatUIKit
 
 protocol AddMembersViewModelProtocol {
     var group: Group { get set }

@@ -9,7 +9,7 @@
 
 import Foundation
 import CometChatSDK
-import CometChatUIKitSwift
+import CometChatUIKit
 import CometChatCallsSDK
 
 public class CallLogDetailsVC: UIViewController {
