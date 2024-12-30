@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import CometChatSDK
-import CometChatUIKitSwift
+import CometChatUIKit
 
 class GroupDetailsViewController: UIViewController {
 
@@ -104,7 +104,7 @@ class GroupDetailsViewController: UIViewController {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = CometChatSpacing.Padding.p6
+        stackView.spacing = 0
         stackView.distribution = .fillEqually
         stackView.alignment = .leading
         stackView.isUserInteractionEnabled = true
@@ -161,7 +161,7 @@ class GroupDetailsViewController: UIViewController {
     }()
 
     
-    // MARK: - Lifecycle Methods 
+    // MARK: - Lifecycle Methods
     override public func viewDidLoad() {
         super.viewDidLoad()
         connect()
@@ -485,55 +485,15 @@ class GroupActionView: UIView {
     }
 }
 
-//MARK: - Group Event Listeners for real time updates
 extension GroupDetailsViewController: CometChatGroupDelegate, CometChatGroupEventListener{
-    
-    func onGroupMemberJoined(action: ActionMessage, joinedUser: User, joinedGroup: Group) {
-        if joinedGroup.guid == self.group?.guid {
-            updateGroupInfo(joinedGroup) //updating group count
-        }
-    }
-    
-    func onMemberAddedToGroup(action: ActionMessage, addedBy: User, addedUser: User, addedTo: Group) {
-        if addedTo.guid == self.group?.guid {
-            updateGroupInfo(addedTo) //updating group count
-        }
-    }
-    
-    func onGroupMemberLeft(action: ActionMessage, leftUser: User, leftGroup: Group) {
-        if leftGroup.guid == self.group?.guid {
-            if CometChat.getLoggedInUser()?.uid == leftUser.uid{
-                groupErrorView.isHidden = false
-                self.view.isUserInteractionEnabled = false
-                self.showHideOptions(hideViewMembers: true, hideAddMembers: true, hideBannMembers: true, hideLeaveGroup: true, hideDeleteGroup: true) //hiding all the options
-            } else {
-                updateGroupInfo(leftGroup)
-            }
-        }
-    }
-    
-    func onGroupMemberKicked(action: ActionMessage, kickedUser: User, kickedBy: User, kickedFrom: Group) {
-        if kickedFrom.guid == self.group?.guid {
-            if CometChat.getLoggedInUser()?.uid == kickedUser.uid{
-                groupErrorView.isHidden = false
-                self.view.isUserInteractionEnabled = false
-                self.showHideOptions(hideViewMembers: true, hideAddMembers: true, hideBannMembers: true, hideLeaveGroup: true, hideDeleteGroup: true) //hiding all the options
-            } else {
-                updateGroupInfo(kickedFrom)
-            }
-        }
-    }
-    
     public func onGroupMemberBanned(action: ActionMessage, bannedUser: User, bannedBy: User, bannedFrom: Group) {
-        if bannedFrom.guid == self.group?.guid {
-            if CometChat.getLoggedInUser()?.uid == bannedUser.uid{
-                groupErrorView.isHidden = false
-                self.view.isUserInteractionEnabled = false
-                self.showHideOptions(hideViewMembers: true, hideAddMembers: true, hideBannMembers: true, hideLeaveGroup: true, hideDeleteGroup: true) //hiding all the options
-            } else {
-                updateGroupInfo(bannedFrom)
-            }
+        if CometChat.getLoggedInUser()?.uid == bannedUser.uid{
+            groupErrorView.isHidden = false
+            self.view.isUserInteractionEnabled = false
+            print("this user was banned")
         }
+        updateGroupInfo(bannedFrom)
+        print("member banned")
     }
     
     public func onGroupMemberUnbanned(action: CometChatSDK.ActionMessage, unbannedUser: CometChatSDK.User, unbannedBy: CometChatSDK.User, unbannedFrom: CometChatSDK.Group) {
@@ -543,72 +503,46 @@ extension GroupDetailsViewController: CometChatGroupDelegate, CometChatGroupEven
         }
     }
     
-    func onGroupMemberScopeChanged(action: ActionMessage, scopeChangeduser: User, scopeChangedBy: User, scopeChangedTo: String, scopeChangedFrom: String, group: Group) {
-        if group.guid == self.group?.guid {
-            
-            //THIS NEED TO BE FIXED FROM THE BACKEND
-            if scopeChangeduser.uid == CometChat.getLoggedInUser()?.uid {
-                group.scope = CometChat.GroupMemberScopeType.from(string: scopeChangedTo) ?? group.scope
-                action.receiver = group
-                updateGroupInfo(group)
-            }
-            
-        }
-    }
-    
     public func ccGroupMemberAdded(messages: [ActionMessage], usersAdded: [User], groupAddedIn: Group, addedBy: User) {
-        if self.group?.guid == groupAddedIn.guid{
-            updateGroupInfo(groupAddedIn)
-        }
+        updateGroupInfo(groupAddedIn)
+        print("member added")
     }
     
     public func ccGroupMemberJoined(joinedUser: User, joinedGroup: Group) {
-        if self.group?.guid == joinedGroup.guid{
-            updateGroupInfo(joinedGroup)
-        }
+        updateGroupInfo(joinedGroup)
+        print("member joined")
     }
     
     public func ccGroupMemberKicked(action: ActionMessage, kickedUser: User, kickedBy: User, kickedFrom: Group) {
-        if self.group?.guid == kickedFrom.guid{
-            updateGroupInfo(kickedFrom)
-        }
-    }
-    
-    func ccGroupMemberBanned(action: ActionMessage, bannedUser: User, bannedBy: User, bannedFrom: Group) {
-        if self.group?.guid == bannedFrom.guid{
-            updateGroupInfo(bannedFrom)
-        }
+        updateGroupInfo(kickedFrom)
+        print("member kicked")
     }
     
     public func ccGroupMemberUnbanned(action: ActionMessage, unbannedUser: User, unbannedBy: User, unbannedFrom: Group) {
-        if self.group?.guid == unbannedFrom.guid {
-            updateGroupInfo(unbannedFrom)
-        }
+        updateGroupInfo(unbannedFrom)
+        print("member unbanned")
     }
     
     public func ccGroupMemberScopeChanged(action: ActionMessage, updatedUser: User, scopeChangedTo: String, scopeChangedFrom: String, group: Group) {
-        if self.group?.guid == group.guid {
-            updateGroupInfo(group)
-        }
+        updateGroupInfo(group)
+        print("member scope changed")
     }
     
     public func ccOwnershipChanged(group: Group, newOwner: GroupMember) {
-        if self.group?.guid == group.guid {
-            updateGroupInfo(group)
-        }
+        updateGroupInfo(group)
+        print("member ownership changed")
     }
     
     public func updateGroupInfo(_ group: Group){
-        if group.guid != self.group?.guid { return }
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
+        if group.guid != group.guid { return }
+        DispatchQueue.main.async {
             self.group = group
             self.memberCountLabel.text = "\(group.membersCount) \("MEMBERS".localize())"
             if group.owner == CometChat.getLoggedInUser()?.uid{
                 if group.membersCount == 1 {
                     self.showHideOptions(hideViewMembers: false, hideAddMembers: false, hideBannMembers: false, hideLeaveGroup: true, hideDeleteGroup: false)
                 } else {
-                    self.showHideOptions(hideViewMembers: false, hideAddMembers: false, hideBannMembers: false, hideLeaveGroup: false, hideDeleteGroup: false)
+                    self.showHideOptions(hideViewMembers: false, hideAddMembers: false, hideBannMembers: false, hideLeaveGroup: false, hideDeleteGroup: true)
                 }
             }else{
                 switch group.scope{

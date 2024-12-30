@@ -5,7 +5,7 @@
 import UIKit
 import Foundation
 import CometChatSDK
-import CometChatUIKitSwift
+import CometChatUIKit
 
 @MainActor
 open class BannedMembersVC: CometChatListBase {

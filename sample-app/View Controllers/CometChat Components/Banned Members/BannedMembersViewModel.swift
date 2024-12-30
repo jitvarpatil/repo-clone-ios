@@ -7,7 +7,7 @@
 
 import Foundation
 import CometChatSDK
-import CometChatUIKitSwift
+import CometChatUIKit
 
 protocol BannedMembersViewModelProtocol {
   

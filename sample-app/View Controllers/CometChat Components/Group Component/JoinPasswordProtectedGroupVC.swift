@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import CometChatSDK
-import CometChatUIKitSwift
+import CometChatUIKit
 
 class JoinPasswordProtectedGroupVC: UIViewController {
     

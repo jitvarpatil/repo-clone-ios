@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import CometChatUIKitSwift
+import CometChatUIKit
 
 extension UIImageView {
     static func downloaded(from url: URL, completion: ((_ image: UIImage?) -> Void)?) {

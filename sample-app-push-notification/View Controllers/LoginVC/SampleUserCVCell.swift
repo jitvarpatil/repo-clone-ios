@@ -5,7 +5,7 @@
 //  Created by Suryansh on 23/12/24.
 //
 
-import CometChatUIKitSwift
+import CometChatUIKit
 import UIKit
 
 class SampleUserCVCell: UICollectionViewCell {
