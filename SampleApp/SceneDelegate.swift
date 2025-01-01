@@ -88,8 +88,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             uikitSettings.set(appID: AppConstants.APP_ID)
                 .set(authKey: AppConstants.AUTH_KEY)
                 .set(region: AppConstants.REGION)
-//                .overrideAdminHost(AppConstants.API_HOST)
-//                .overrideClientHost(AppConstants.CLIENT_HOST)
                 .subscribePresenceForAllUsers()
                 .build()
             

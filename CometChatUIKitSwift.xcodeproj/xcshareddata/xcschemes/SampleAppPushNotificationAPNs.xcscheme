@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "18A541DD2CC12E1700AA055A"
-               BuildableName = "sample-app-push-notification.app"
-               BlueprintName = "sample-app-push-notification"
+               BuildableName = "SampleAppPushNotificationAPNs.app"
+               BlueprintName = "SampleAppPushNotificationAPNs"
                ReferencedContainer = "container:CometChatUIKitSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "18A541DD2CC12E1700AA055A"
-            BuildableName = "sample-app-push-notification.app"
-            BlueprintName = "sample-app-push-notification"
+            BuildableName = "SampleAppPushNotificationAPNs.app"
+            BlueprintName = "SampleAppPushNotificationAPNs"
             ReferencedContainer = "container:CometChatUIKitSwift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "18A541DD2CC12E1700AA055A"
-            BuildableName = "sample-app-push-notification.app"
-            BlueprintName = "sample-app-push-notification"
+            BuildableName = "SampleAppPushNotificationAPNs.app"
+            BlueprintName = "SampleAppPushNotificationAPNs"
             ReferencedContainer = "container:CometChatUIKitSwift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
