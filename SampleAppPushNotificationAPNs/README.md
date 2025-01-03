@@ -10,7 +10,7 @@ The CometChat iOS [Enhanced Push Notifications (Beta)](https://www.cometchat.com
     display: flex;
     align-items: center;
     justify-content: center;">
-   <img src="../screenshots/overview_cometchat_screens.png" />
+   <img src="../screenshots/overview_cometchat_screen.png" />
 </div>
 
 
