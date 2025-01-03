@@ -26,7 +26,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if CometChat.getLoggedInUser() != nil {
             setRootViewController(UINavigationController(rootViewController: HomeScreenViewController()))
         } else {
-            setRootViewController(LoginWithUidVC())
+            if AppConstants.APP_ID.isEmpty || AppConstants.AUTH_KEY.isEmpty || AppConstants.REGION.isEmpty {
+                setRootViewController(ChangeAppCredentialsVC())
+            } else {
+                setRootViewController(LoginWithUidVC())
+            }
         }
     }
 
