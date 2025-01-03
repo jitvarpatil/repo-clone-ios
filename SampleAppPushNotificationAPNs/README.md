@@ -6,6 +6,13 @@
 
 The CometChat iOS [Enhanced Push Notifications (Beta)](https://www.cometchat.com/docs-beta/notifications/push-overview) Sample App is capable of handling push notifications for one-on-one (private), group messaging, and even call notifications. This sample app enables users to send and receive text messages, make and receive calls, and effectively displays push notifications for these interactions.
 
+<div style="
+    display: flex;
+    align-items: center;
+    justify-content: center;">
+   <img src="../screenshots/overview_cometchat_screens.png" />
+</div>
+
 
 ## Pre-requisite
 

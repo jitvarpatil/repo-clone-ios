@@ -4,13 +4,13 @@
 
 # iOS Sample App by CometChat
 
-This reference application showcases the integration of [CometChat's iOS UI Kit](https://www.cometchat.com/docs/v4/ios-uikit/overview) within an iOS framework. It provides developers with examples of implementing real-time messaging and voice and video calling features in their iOS-based applications.
+This reference application showcases the integration of [CometChat's iOS UI Kit](https://www.cometchat.com/docs/v5/ui-kit/ios/overview) within an iOS framework. It demonstrates how to implement real-time messaging and voice/video calling features with ease.
 
 <div style="
     display: flex;
     align-items: center;
     justify-content: center;">
-   <img src="./Screenshots/overview_cometchat_screens.png" />
+   <img src="../screenshots/overview_cometchat_screens.png" />
 </div>
 
 ## Prerequisites
@@ -45,8 +45,6 @@ This reference application showcases the integration of [CometChat's iOS UI Kit]
 
 6. Enter your CometChat _`App ID`_, _`Region`_, and _`Auth Key`_ in the [CometChatSwift/AppConstants.swift](CometChatSwift/AppConstants.swift) file:
    https://github.com/cometchat/cometchat-sample-app-ios/blob/056b60f4b8092a6a24df64e371e56879bbb77915/CometChatSwift/AppConstants.swift#L9-L13
-
-7.  If your app is created before August 12th, 2024 then change the sample data URL to `https://assets.cometchat.io/sampleapp/v1/sampledata.json` in the [CometChatSwift/Controllers/Login.swift](https://github.com/cometchat/cometchat-sample-app-ios/blob/v4/CometChatSwift/Controllers/Login.swift) file: https://github.com/cometchat/cometchat-sample-app-ios/blob/056b60f4b8092a6a24df64e371e56879bbb77915/CometChatSwift/Controllers/Login.swift#L109-L111
 
 8. Run the app on a device or emulator.
 
