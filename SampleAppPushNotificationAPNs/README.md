@@ -18,10 +18,8 @@ The CometChat iOS [Enhanced Push Notifications (Beta)](https://www.cometchat.com
 
 1. Login to the [CometChat Dashboard](https://app.cometchat.com/).
 2. Select an existing app or create a new one.
-3. Click on the Notifications section from the menu on the left.
-4. Enable Push Notifications by clicking on the toggle bar and configure the push notifications.
-5. Add credentials for APNs.
-6. Make a note of the Provider ID.
+3. Follow our [APNs integration](https://www.cometchat.com/docs/notifications/push-integration#add-apns-credentials) guide.
+4. Make a note of the AppId, Region, AuthKey, Provider ID.
 
 ## Run the Sample App
 
@@ -32,11 +30,9 @@ The CometChat iOS [Enhanced Push Notifications (Beta)](https://www.cometchat.com
 pod install
 ```
 
-3. Add your app credentials like `appId`, `region`, and `authKey` in the `AppConstants.swift` file. Keep the value of `notificationMode` as `APNs` (Recommended for iOS).
-4. Follow our [APNs integration](https://www.cometchat.com/docs/notifications/push-integration#add-apns-credentials) guide.
-5. Add the Provider ID for registering the APNS and VoIP tokens in `PROVIDER_ID` in [AppConstants.swift](AppConstants.swift) file:
+3. Add your app credentials like `APP_ID`, `REGION`,`AUTH_KEY` and `PROVIDER_ID` in the [AppConstants.swift](AppConstants.swift) file.
 
-6. Run the sample app.
+4. Run the sample app.
 
 
 
