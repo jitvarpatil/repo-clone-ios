@@ -10,7 +10,7 @@ CometChat Swift UIKit provides a pre-built user interface kit that developers ca
     display: flex;
     align-items: center;
     justify-content: center;">
-   <img src="./screenshots/overview_cometchat_screens.png" />
+   <img src="./screenshots/overview_cometchat_screen.png" />
 </div>
 
 ## 🚀 Explore the Sample Apps!
