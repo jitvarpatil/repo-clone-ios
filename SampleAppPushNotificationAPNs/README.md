@@ -34,7 +34,7 @@ pod install
 
 3. Add your app credentials like `appId`, `region`, and `authKey` in the `AppConstants.swift` file. Keep the value of `notificationMode` as `APNs` (Recommended for iOS).
 4. Follow our [APNs integration](https://www.cometchat.com/docs/notifications/push-integration#add-apns-credentials) guide.
-5. Add the Provider ID for registering the APNS and VoIP tokens in `PROVIDER_ID` in [CometChatSwift/AppConstants.swift](CometChatSwift/AppConstants.swift) file:
+5. Add the Provider ID for registering the APNS and VoIP tokens in `PROVIDER_ID` in [AppConstants.swift](SampleAppPushNotificationAPNs/AppConstants.swift) file:
 
 6. Run the sample app.
 
