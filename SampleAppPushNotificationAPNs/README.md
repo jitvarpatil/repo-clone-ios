@@ -33,13 +33,11 @@ pod install
 ```
 
 3. Add your app credentials like `appId`, `region`, and `authKey` in the `AppConstants.swift` file. Keep the value of `notificationMode` as `APNs` (Recommended for iOS).
-4. Add the Provider ID for registering the APNS and VoIP tokens.
-5. Run the sample app.
-6. Put the app in the background or terminate it.
-7. Send a message or call to the logged in user from another device.
-8. You should see a push notification for a message and call notification for a call.
-9. Tap on the notification to open the Sample app for message.
-10. Tap on accept/decline on call notification to initiate or decline call.
+4. Follow our [APNs integration](https://www.cometchat.com/docs/notifications/push-integration#add-apns-credentials) guide.
+5. Add the Provider ID for registering the APNS and VoIP tokens in `PROVIDER_ID` in [CometChatSwift/AppConstants.swift](CometChatSwift/AppConstants.swift) file:
+
+6. Run the sample app.
+
 
 
 ## Help and Support

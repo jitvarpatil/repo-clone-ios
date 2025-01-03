@@ -76,7 +76,7 @@ class CometChatAPNsHelper {
         let hexString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         UserDefaults.standard.set(hexString, forKey: "apnspuToken")
         print("apns token \(hexString)")
-        CometChatNotifications.registerPushToken(pushToken: hexString, platform: CometChatNotifications.PushPlatforms.APNS_IOS_DEVICE, providerId: "aoiueyrqwoieufhqpwieufghqpwieufghp", onSuccess: { (success) in
+        CometChatNotifications.registerPushToken(pushToken: hexString, platform: CometChatNotifications.PushPlatforms.APNS_IOS_DEVICE, providerId: AppConstants.PROVIDER_ID, onSuccess: { (success) in
             print("registerPushToken apns: \(success)")
             
         }) { (error) in
@@ -97,7 +97,7 @@ class CometChatAPNsHelper {
         let deviceToken = pushCredentials.token.reduce("", {$0 + String(format: "%02X", $1) })
         UserDefaults.standard.set(deviceToken, forKey: "voipToken")
         print("VOIP token \(deviceToken)")
-        CometChatNotifications.registerPushToken(pushToken: deviceToken, platform: CometChatNotifications.PushPlatforms.APNS_IOS_VOIP, providerId: "aoiueyrqwoieufhqpwieufghqpwieufghp", onSuccess: { (success) in
+        CometChatNotifications.registerPushToken(pushToken: deviceToken, platform: CometChatNotifications.PushPlatforms.APNS_IOS_VOIP, providerId: AppConstants.PROVIDER_ID, onSuccess: { (success) in
             print("registerPushToken VOIP: \(success)")
             
         }) { (error) in

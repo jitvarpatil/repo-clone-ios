@@ -12,4 +12,5 @@ class AppConstants {
     static var APP_ID = ""
     static var AUTH_KEY = ""
     static var REGION = ""
+    static var PROVIDER_ID = ""
 }
