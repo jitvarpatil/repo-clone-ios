@@ -10,8 +10,15 @@ CometChat Swift UIKit provides a pre-built user interface kit that developers ca
     display: flex;
     align-items: center;
     justify-content: center;">
-   <img src="./Screenshots/overview_cometchat_screens.png" />
+   <img src="./screenshots/overview_cometchat_screens.png" />
 </div>
+
+## 🚀 Explore the Sample Apps!
+
+Dive straight into our Sample Apps to see CometChat UI Kit in action! Whether you're building a messaging app or enhancing your existing project, this sample app showcases the full potential of our React UI components.  
+- [Sample App ](SampleApp#readme)
+- [Sample App with Push Notifications](SampleAppPushNotificationAPNs#readme)
+
 
 ## Prerequisites
 
