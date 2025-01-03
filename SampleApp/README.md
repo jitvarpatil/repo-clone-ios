@@ -2,9 +2,9 @@
   <img alt="CometChat" src="https://assets.cometchat.io/website/images/logos/banner.png">
 </p>
 
-# iOS Sample App with APNs Push Notifications by CometChat
+# iOS Sample App by CometChat
 
-The CometChat iOS [Enhanced Push Notifications (Beta)](https://www.cometchat.com/docs-beta/notifications/push-overview) Sample App is capable of handling push notifications for one-on-one (private), group messaging, and even call notifications. This sample app enables users to send and receive text messages, make and receive calls, and effectively displays push notifications for these interactions.
+This is a reference application showcasing the integration of [CometChat's iOS UI Kit](https://www.cometchat.com/docs/ui-kit/ios/5.0/overview) in a native iOS application. It demonstrates how to implement real-time messaging and voice/video calling features with ease.
 
 <div style="
     display: flex;
