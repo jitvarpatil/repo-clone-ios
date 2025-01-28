@@ -599,7 +599,7 @@
 "SELECT_A_TIME" = "Select a Time";
 "NO_TIME_SLOTS_AVAILABLE_FOR_THIS_DAY" = "No time slot available for this date. Please try another date.";
 "REPLIES_R" = "replies";
-"MENTION_LIMIT_TEXT" = "You can mention up to 10 times at a time.";
+"MENTION_LIMIT_TEXT" = "You can mention up to 10 usere at once.";
 "MESSAGE_PRIVATELY" = "Message Privately";
 "COPY" = "Copy";
 "INFO" = "Info";
