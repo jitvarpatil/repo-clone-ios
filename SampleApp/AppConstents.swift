@@ -15,6 +15,7 @@ class AppConstants {
     static var REGION: String = ""
     
 }
+
 extension AppConstants{
     static func saveAppConstants(){
         UserDefaults.standard.set(APP_ID, forKey: "appID")
