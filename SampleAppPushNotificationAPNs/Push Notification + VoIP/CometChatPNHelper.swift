@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import CometChatSDK
 import CometChatUIKitSwift
-import Firebase
 
 class CometChatPNHelper {
     
