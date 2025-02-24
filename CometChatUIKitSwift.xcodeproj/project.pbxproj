@@ -681,6 +681,7 @@
 		5D1C21919A992B4E5C92694D /* 40.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = 40.png; path = SampleAppPushNotificationAPNs/Assets.xcassets/AppIcon.appiconset/40.png; sourceTree = "<group>"; };
 		5D9571917DDABBA4501F6334 /* 40.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = 40.png; path = SampleApp/Assets.xcassets/AppIcon.appiconset/40.png; sourceTree = "<group>"; };
 		5EA4B1A7CB250E39F4CA2DDE /* IN - India.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "IN - India.png"; path = "SampleApp/Assets.xcassets/India-flag.imageset/IN - India.png"; sourceTree = "<group>"; };
+		5FB9D956D25F652CBD5D5CC7 /* changelog.md */ = {isa = PBXFileReference; includeInIndex = 1; name = changelog.md; path = SampleAppPushNotificationAPNs/changelog.md; sourceTree = "<group>"; };
 		5FE259AA842A16F296C330E1 /* cometchat_white.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = cometchat_white.png; path = SampleApp/Assets.xcassets/cometchat_white.imageset/cometchat_white.png; sourceTree = "<group>"; };
 		5FEAF9DAA1836C00416397B6 /* Base_iOS Icons@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Base_iOS Icons@2x.png"; path = "SampleApp/Assets.xcassets/ban_member.imageset/Base_iOS Icons@2x.png"; sourceTree = "<group>"; };
 		659D067E515FB9578EDE2BBC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = SampleAppPushNotificationAPNs/README.md; sourceTree = "<group>"; };
@@ -1233,6 +1234,7 @@
 		CF1B149183C11572C9A5C1CC /* Icon-App-40x40@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Icon-App-40x40@3x.png"; path = "SampleAppPushNotificationAPNs/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png"; sourceTree = "<group>"; };
 		D0EB503D57588AF097292199 /* 1024.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = 1024.png; path = SampleAppPushNotificationAPNs/Assets.xcassets/AppIcon.appiconset/1024.png; sourceTree = "<group>"; };
 		D3281678C4600E87E6E953D2 /* Contents.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = Contents.json; path = SampleApp/Assets.xcassets/block_image.imageset/Contents.json; sourceTree = "<group>"; };
+		D3AAEB4D3BCE10FEA2A310D4 /* changelog.md */ = {isa = PBXFileReference; includeInIndex = 1; name = changelog.md; path = SampleApp/changelog.md; sourceTree = "<group>"; };
 		D4EB8CA640C59DD83D02C71B /* 1024.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = 1024.png; path = SampleApp/Assets.xcassets/AppIcon.appiconset/1024.png; sourceTree = "<group>"; };
 		D50A0B5EB246C8F567397B84 /* Contents.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = Contents.json; path = "SampleAppPushNotificationAPNs/Assets.xcassets/us-flag.imageset/Contents.json"; sourceTree = "<group>"; };
 		D54096D5442609AE364464CF /* 16.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = 16.png; path = SampleAppPushNotificationAPNs/Assets.xcassets/AppIcon.appiconset/16.png; sourceTree = "<group>"; };
@@ -1826,6 +1828,8 @@
 				13F8E7D087F39CE3FB1A748A /* ChangeAppCredentialsVC.swift */,
 				0E442EDE37682E96BAD15FD3 /* LoginWithUidVC.swift */,
 				DB40515D1B8AECF6CC90B3D4 /* SampleUserCVCell.swift */,
+				D3AAEB4D3BCE10FEA2A310D4 /* changelog.md */,
+				5FB9D956D25F652CBD5D5CC7 /* changelog.md */,
 			);
 			sourceTree = "<group>";
 		};
