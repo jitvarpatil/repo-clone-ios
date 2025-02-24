@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import CometChatSDK
 import CometChatUIKitSwift
+import Firebase
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
