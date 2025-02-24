@@ -9,6 +9,8 @@ import UIKit
 import AVFoundation
 import CometChatUIKitSwift
 import CometChatSDK
+import FirebaseAuth
+import Bugsee
 
 var isBugseeLaunched = false
 
