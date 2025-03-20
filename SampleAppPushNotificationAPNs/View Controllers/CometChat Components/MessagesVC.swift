@@ -24,10 +24,6 @@ class MessagesVC: UIViewController {
         if let user = user { headerView.set(user: user) }
         if let group = group { headerView.set(group: group) }
         headerView.set(controller: self) //passing controller needs to be mandatory
-        headerView.set(trailView: { [weak self] user, group in
-            guard let this = self else { return UIView() }
-            return this.getInfoButton()
-        })
         return headerView
     }()
     
@@ -69,7 +65,7 @@ class MessagesVC: UIViewController {
         if let user = user { messageListView.set(user: user) }
         if let group = group { messageListView.set(group: group) }
         messageListView.set(controller: self)
-        messageListView.set(onThreadRepliesClick: { [weak self] message,template in
+        messageListView.setOnThreadRepliesClick { [weak self] message, template in
             guard let this = self else { return }
             let threadedView = ThreadedMessagesVC()
             threadedView.parentMessage = message
@@ -77,7 +73,7 @@ class MessagesVC: UIViewController {
             threadedView.parentMessageView.controller = self
             threadedView.parentMessageView.set(parentMessage: message)
             this.navigationController?.pushViewController(threadedView, animated: true)
-        })
+        }
         
         //adding tap gesture on mention click
         let mentionsFormatter = CometChatMentionsFormatter()
@@ -193,12 +189,26 @@ class MessagesVC: UIViewController {
             blockedLabel.trailingAnchor.constraint(equalTo: blockedView.trailingAnchor, constant: -CometChatSpacing.Padding.p5)
         ])
         
+        setTailViewToHeader()
                 
         if user?.blockedByMe == true{
             self.composerView.removeFromSuperview()
-            self.headerView.hideUserStatus = true
+            self.headerView.tailView.subviews.first?.subviews[0].isHidden = true
+            self.headerView.tailView.subviews.first?.subviews[1].isHidden = true
+            self.headerView.disable(userPresence: true)
             if user != nil { blockedLabel.text = "Can’t send a message to blocked \(user?.name ?? "")" }
         }
+    }
+    
+    func setTailViewToHeader() {
+        let menu = CometChatUIKit.getDataSource().getAuxiliaryHeaderMenu(user: user, group: group, controller: self, id: nil)
+        let infoButton = getInfoButton()
+        menu?.addArrangedSubview(infoButton)
+        menu?.distribution = .fillEqually
+        menu?.alignment = .fill
+        menu?.spacing = CometChatSpacing.Spacing.s4
+        menu?.widthAnchor.constraint(lessThanOrEqualToConstant: 120).isActive = true
+        headerView.set(tailView: menu ?? infoButton)
     }
     
     func enableComposerWithCallButton() {
@@ -213,12 +223,13 @@ class MessagesVC: UIViewController {
             composerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             composerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        self.headerView.hideUserStatus = true
+        setTailViewToHeader()
+        self.headerView.disable(userPresence: false)
     }
     
     func disableComposerWithCallButton() {
         self.composerView.removeFromSuperview()
-//        headerView.set(trailView: getInfoButton())
+        headerView.set(tailView: getInfoButton())
     }
 }
 

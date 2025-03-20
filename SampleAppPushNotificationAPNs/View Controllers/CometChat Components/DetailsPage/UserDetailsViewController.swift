@@ -76,9 +76,9 @@ class UserDetailsViewController: UIViewController {
         callButton.style.audioCallTextFont = CometChatTypography.Body.regular
         callButton.style.audioCallTextColor = CometChatTheme.textColorSecondary
         callButton.translatesAutoresizingMaskIntoConstraints = false
-        callButton.hideVideoCallButton = true
-        callButton.voiceCallIconText = "Voice"
+        callButton.hide(videoCall: true)
         if let user = user { callButton.set(user: user) }
+        callButton.set(voiceCallIconText: "Voice")
         callButton.layer.borderWidth = 1
         callButton.layer.borderColor = CometChatTheme.borderColorDefault.cgColor
         callButton.layer.cornerRadius = 8
@@ -93,9 +93,9 @@ class UserDetailsViewController: UIViewController {
         callButton.style.videoCallTextFont = CometChatTypography.Body.regular
         callButton.style.videoCallTextColor = CometChatTheme.textColorSecondary
         callButton.translatesAutoresizingMaskIntoConstraints = false
-        callButton.hideVoiceCallButton = true
-        callButton.videoCallIconText = "Video"
+        callButton.hide(voiceCall: true)
         if let user = user { callButton.set(user: user) }
+        callButton.set(videoCallIconText: "Video")
         callButton.layer.borderWidth = 1
         callButton.layer.borderColor = CometChatTheme.borderColorDefault.cgColor
         callButton.layer.cornerRadius = 8
