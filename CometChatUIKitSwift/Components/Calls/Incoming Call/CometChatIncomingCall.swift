@@ -9,7 +9,6 @@
 
 import UIKit
 import CometChatSDK
-import CometChatCallsSDK
 
 public class CometChatIncomingCall: UIViewController {
     

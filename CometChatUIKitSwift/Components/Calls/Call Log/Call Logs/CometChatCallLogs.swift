@@ -9,8 +9,6 @@ import Foundation
 import CometChatSDK
 
 #if canImport(CometChatCallsSDK)
-import CometChatCallsSDK
-
 open class CometChatCallLogs: CometChatListBase {
     
     // MARK: - Properties
@@ -82,11 +80,11 @@ open class CometChatCallLogs: CometChatListBase {
         prefersLargeTitles = true
         loadingView = CometChatCallLogShimmer()
         errorStateTitleText = "OOPS!".localize()
-        errorStateSubTitleText = "Looks like something went wrong. Please try again."
+        errorStateSubTitleText = "LOOKS_LIKE_SOMETHINGS_WENT_WORNG._PLEASE_TRY_AGAIN".localize()
         errorStateImage = UIImage(named: "error-icon", in: CometChatUIKit.bundle, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal) ?? UIImage()
         emptyStateImage = UIImage(systemName: "phone.fill")?.withRenderingMode(.alwaysTemplate) ?? UIImage()
-        emptyStateTitleText = "No Call Logs Yet"
-        emptyStateSubTitleText = "Make or receive calls to see your call history listed here".localize()
+        emptyStateTitleText = "CALL_LOGS_EMPTY_MESSAGE".localize()
+        emptyStateSubTitleText = "CALL_LOGS_EMPTY_SUBTITLE_MESSAGE".localize()
     }
     
     open override func setupStyle() {
@@ -108,7 +106,11 @@ open class CometChatCallLogs: CometChatListBase {
         viewModel.reload = { [weak self] in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.removeErrorView()
+                if self.isEmptyStateVisible {
+                    self.removeEmptyView()
+                } else if self.isErrorStateVisible {
+                    self.removeErrorView()
+                }
                 self.removeLoadingView()
                 self.tableView.restore()
                 self.reload()

@@ -4015,7 +4015,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		81B52C54FD89E48F388CDFB7 = {
+		81B52C54FD89E48F388CDFB7 /*  */ = {
 			isa = PBXGroup;
 			children = (
 				BF7A6ADE1A0F8A6C122D6061 /* AppConstants.swift */,
@@ -5429,7 +5429,7 @@
 				2996ED5AE661ECA10A81C018 /* Frameworks */,
 				8466DC002AA7B5DD00093E91 /* Products */,
 				84166DE82AF327DA00C9CD24 /* Pods */,
-				81B52C54FD89E48F388CDFB7,
+				81B52C54FD89E48F388CDFB7 /*  */,
 			);
 			sourceTree = "<group>";
 		};
