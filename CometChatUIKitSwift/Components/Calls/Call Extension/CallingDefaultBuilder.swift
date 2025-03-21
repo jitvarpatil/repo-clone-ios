@@ -10,7 +10,7 @@ import Foundation
 #if canImport(CometChatCallsSDK)
 
 public class CallingDefaultBuilder {
-    public static var callSettingsBuilder = CometChatCallsSDK.CallSettingsBuilder()
+    static var callSettingsBuilder = CometChatCallsSDK.CallSettingsBuilder()
     
     public static func setIsAudioOnly(_ value: Bool) {
         if let cls: AnyClass = NSClassFromString("CometChatCallsSDK.CometChatCalls") {
