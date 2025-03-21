@@ -95,7 +95,7 @@ open class CometChatOutgoingCall: UIViewController {
     public var outgoingCallStyle = OutgoingCallStyle()
     var onCancelClick: ((_ call: Call?, _ controller: UIViewController?) -> Void)?
     var viewModel =  OutgoingCallViewModel()
-    public var callSettingsBuilder: CallSettingsBuilder?
+    var callSettingsBuilder: CallSettingsBuilder?
     
     open override func viewDidLoad() {
         super.viewDidLoad()

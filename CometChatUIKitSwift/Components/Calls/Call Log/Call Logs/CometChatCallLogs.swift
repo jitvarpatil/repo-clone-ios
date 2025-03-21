@@ -20,13 +20,13 @@ open class CometChatCallLogs: CometChatListBase {
     var subtitleView: ((_ callLog : CometChatCallsSDK.CallLog) -> UIView)?
     var onItemClick: ((_ callLog: CometChatCallsSDK.CallLog) -> Void)?
     var onItemLongClick: ((_ callLog: CometChatCallsSDK.CallLog, _ indexPath: IndexPath) -> Void)?
-    public var goToCallLogDetail: ((_ callLog: CometChatCallsSDK.CallLog, _ user: User?, _ group: Group?) -> Void)?
+    var goToCallLogDetail: ((_ callLog: CometChatCallsSDK.CallLog, _ user: User?, _ group: Group?) -> Void)?
     var onError: ((_ error: Any?) -> Void)?
     var outgoingCallConfiguration = OutgoingCallConfiguration()
     var onCallButtonClicked: ((CometChatCallsSDK.CallLog) -> Void)?
-    public var callUser: CallUser?
-    public var callGroup: CallGroup?
-    public var callRequestBuilder: CometChatCallsSDK.CallLogsRequest.CallLogsBuilder?
+    var callUser: CallUser?
+    var callGroup: CallGroup?
+    var callRequestBuilder: CometChatCallsSDK.CallLogsRequest.CallLogsBuilder?
     public static var style = CallLogStyle()
     public lazy var style = CometChatCallLogs.style
     
@@ -152,7 +152,7 @@ open class CometChatCallLogs: CometChatListBase {
     }
     
     // MARK: - Call Handling
-    open func placeCall(for callObject: CallLog) {
+    func placeCall(for callObject: CallLog) {
         var call: Call?
         let isInitiator = CometChat.getLoggedInUser()?.uid != (callObject.initiator as? CallUser)?.uid
         if let callUser = isInitiator ? (callObject.initiator as? CallUser) : (callObject.receiver as? CallUser) {
