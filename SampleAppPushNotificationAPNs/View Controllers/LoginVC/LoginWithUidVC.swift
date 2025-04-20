@@ -106,7 +106,7 @@ class LoginWithUidVC: UIViewController {
     lazy var changeAppCredentialsLabel: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        let fullText = "CHANGE_APP_CREDENTIALS";
+        let fullText = "CHANGE_APP_CREDENTIALS".localize();
         let attributedText = NSMutableAttributedString(
             string: fullText,
             attributes: [.foregroundColor: CometChatTheme.primaryColor]
