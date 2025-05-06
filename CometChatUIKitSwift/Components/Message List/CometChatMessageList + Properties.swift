@@ -139,7 +139,7 @@ extension CometChatMessageList {
     @discardableResult
     public func scrollToBottom(isAnimated: Bool = true) -> Self {
         if tableView.numberOfSections > 0 && tableView.numberOfRows(inSection: 0) > 0 {
-            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .bottom, animated: isAnimated)
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: isAnimated)
         }
         return self
     }
@@ -286,7 +286,7 @@ extension CometChatMessageList {
         if let messageInformationConfiguration = self.messageInformationConfiguration {
             configureMessageInformation(configuration: messageInformationConfiguration, messageInformation: messageInformationController)
         }
-        
+        messageInformationController.dateTimeFormatter = dateTimeFormatter
         messageInformationController.set(message: message)
         
         if let indexPath = viewModel.getIndexPath(for: message), let cell = tableView.cellForRow(at: indexPath) as? CometChatMessageBubble {

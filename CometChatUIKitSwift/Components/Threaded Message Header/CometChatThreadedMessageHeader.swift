@@ -80,7 +80,7 @@ open class CometChatThreadedMessageHeader: UIView {
     var datePattern: ((_ conversation: Conversation) -> String)?
     public var hideReplyCount: Bool = false
     public var hideReplyCountBar: Bool = false
-    public var hideAvatar: Bool = false
+    public var hideAvatar: Bool?
     
     //Helper Variable
     public static var style = ThreadedMessageHeaderStyle()
@@ -88,6 +88,10 @@ open class CometChatThreadedMessageHeader: UIView {
     internal var count: Int = 0
     private var heightConstant: NSLayoutConstraint!
     open var viewModel: ThreadedMessageHeaderViewModelProtocol = ThreadedMessageHeaderViewModel()
+    
+    //Date Time Formatter
+    public static var dateTimeFormatter: CometChatDateTimeFormatter = CometChatUIKit.dateTimeFormatter
+    public lazy var dateTimeFormatter: CometChatDateTimeFormatter = CometChatThreadedMessageHeader.dateTimeFormatter
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -219,11 +223,11 @@ open class CometChatThreadedMessageHeader: UIView {
                 case .user:
                     cell.hide(headerView: true)
                     if cell.alignment == .left {
-                        cell.hide(avatar: hideAvatar)
+                        cell.hide(avatar: hideAvatar ?? true)
                     }
                 case .group:
                     if cell.alignment == .left {
-                        cell.hide(avatar: hideAvatar)
+                        cell.hide(avatar: hideAvatar ?? false)
                         cell.hide(headerView: false)
                     } else {
                         cell.hide(headerView: true)
@@ -269,7 +273,7 @@ open class CometChatThreadedMessageHeader: UIView {
                     bubbleStyle: bubbleStyle,
                     message: message,
                     hideReceipt: hideReceipt,
-                    messageAlignment: messageAlignment
+                    messageAlignment: messageAlignment, dateTimeFormatter: dateTimeFormatter
                 )
             }
             

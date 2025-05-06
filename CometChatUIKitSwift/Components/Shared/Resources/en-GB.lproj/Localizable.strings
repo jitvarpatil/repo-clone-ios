@@ -1,10 +1,10 @@
+/* 
+  Localizable.strings
+  CometChatUIKitSwift
 
-//  Localizable.strings.swift
- 
-//  Created by CometChat Inc. on 20/09/19.
-//  Copyright ©  2022 CometChat Inc. All rights reserved.
-
-// KEY --> VALUE
+  Created by Dawinder on 05/05/25.
+  
+*/
 
 "CHATS" = "Chats";
 "USERS" = "Users";
