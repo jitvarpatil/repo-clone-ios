@@ -116,6 +116,9 @@ open class CometChatMessageList: UIView {
         }
     }
     
+    //Date Time Formatter
+    public static var dateTimeFormatter: CometChatDateTimeFormatter = CometChatUIKit.dateTimeFormatter
+    public lazy var dateTimeFormatter: CometChatDateTimeFormatter = CometChatMessageList.dateTimeFormatter
     
     //MARK: - Call Backs
     var onThreadRepliesClick: ((_ message: BaseMessage, _ template: CometChatMessageTemplate) -> ())?
@@ -125,8 +128,7 @@ open class CometChatMessageList: UIView {
     var onError: ((_ error: CometChatException) -> Void)?
     var onEmpty: (() -> Void)?
     var onLoad: (([BaseMessage]) -> Void)?
-    
-    public var hideAvatar: Bool = false
+    public var hideAvatar: Bool?
     public var hideGroupActionMessages: Bool = false
     public var hideReplyInThreadOption: Bool = false{
         didSet{
@@ -608,7 +610,7 @@ open class CometChatMessageList: UIView {
             message: message,
             hideReceipt: hideReceipts,
             messageAlignment: messageAlignment,
-            timePattern: timePattern
+            timePattern: timePattern, dateTimeFormatter: dateTimeFormatter
         )
     }
     
@@ -664,6 +666,7 @@ extension CometChatMessageList: UITableViewDelegate, UITableViewDataSource {
         if hideDateSeparator == true { return nil }
         if let date = viewModel.messages[safe: section]?.messages.last?.sentAt {
             let dateHeader = CometChatDate().withoutAutoresizingMaskConstraints()
+            dateHeader.dateTimeFormatter = dateTimeFormatter
             if let time = dateSeparatorPattern?(date) {
                 dateHeader.text = time
             }
@@ -808,11 +811,11 @@ extension CometChatMessageList: UITableViewDelegate, UITableViewDataSource {
                     case .user:
                         cell.hide(headerView: true)
                         if cell.alignment == .left {
-                            cell.hide(avatar: hideAvatar)
+                            cell.hide(avatar: hideAvatar ?? true)
                         }
                     case .group:
                         if cell.alignment == .left {
-                            cell.hide(avatar: hideAvatar)
+                            cell.hide(avatar: hideAvatar ?? false)
                             cell.hide(headerView: false)
                         } else {
                             cell.hide(headerView: true)
@@ -822,8 +825,10 @@ extension CometChatMessageList: UITableViewDelegate, UITableViewDataSource {
                     }
                 }
                 
-                // Setting up context menu
-                setupContextMenu(for: cell, message: message)
+                if message.id > 0{
+                    // Setting up context menu
+                    setupContextMenu(for: cell, message: message)
+                }
                 
                 return cell
             }
@@ -871,11 +876,11 @@ extension CometChatMessageList: UITableViewDelegate, UITableViewDataSource {
                     case .user:
                         cell.hide(headerView: true)
                         if cell.alignment == .left {
-                            cell.hide(avatar: hideAvatar)
+                            cell.hide(avatar: hideAvatar ?? true)
                         }
                     case .group:
                         if cell.alignment == .left {
-                            cell.hide(avatar: hideAvatar)
+                            cell.hide(avatar: hideAvatar ?? false)
                             cell.hide(headerView: false)
                         } else {
                             cell.hide(headerView: true)
