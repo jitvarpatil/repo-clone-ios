@@ -57,11 +57,6 @@ public class DateTimeFormatterUtils{
             if let lastWeekFormatter = dateTimeFormatter?.lastWeek {
                 return lastWeekFormatter(timeStamp)
             }
-            
-            let dateFormat = DateFormatter()
-            dateFormat.dateFormat = "EEEE"
-            dateFormat.locale = Locale(identifier: CometChatLocalize.getLocale())
-            return dateFormat.string(from: date).capitalized
         }
         
         if let otherDayFormatter = dateTimeFormatter?.otherDay {
