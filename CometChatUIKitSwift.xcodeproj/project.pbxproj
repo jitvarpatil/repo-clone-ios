@@ -1587,6 +1587,7 @@
 		6E199293300ED220708F27BA /* ReactionListCollectionCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReactionListCollectionCell.swift; path = "CometChatUIKitSwift/Components/Message List/ReactionsHelper/ReactionList/ReactionListCollectionCell.swift"; sourceTree = "<group>"; };
 		6E19FDFC3078C1E19662D4C1 /* messages-attach@4x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "messages-attach@4x.png"; path = "CometChatUIKitSwift/Components/Resources/messages-assets.xcassets/messages-attach@4x.imageset/messages-attach@4x.png"; sourceTree = "<group>"; };
 		6E1EBB2C3E11B9002E79D389 /* Call New@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Call New@2x.png"; path = "CometChatUIKitSwift/Components/Calls/Resources/calls-assets.xcassets/call-new.imageset/Call New@2x.png"; sourceTree = "<group>"; };
+		6E1F66AFA36F00C73D715BA4 /* SplitScreenViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SplitScreenViewController.swift; path = "SampleApp/View Controllers/SplitScreenViewController.swift"; sourceTree = "<group>"; };
 		6E3D51BFA6DBDDC15ACA22C1 /* AudioRecorderManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioRecorderManager.swift; path = CometChatUIKitSwift/Components/Shared/Views/MediaRecorder/AudioWaveForm/AudioRecorderManager.swift; sourceTree = "<group>"; };
 		6E4D4DAC3C4353EFD7950967 /* ConversationViewModel + UserEventListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConversationViewModel + UserEventListener.swift"; path = "CometChatUIKitSwift/Components/Conversations/ConversationViewModel + UserEventListener.swift"; sourceTree = "<group>"; };
 		6E660C89B5A612BC22144170 /* CometChatConversationSimmer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CometChatConversationSimmer.swift; path = CometChatUIKitSwift/Components/Conversations/CometChatConversationSimmer.swift; sourceTree = "<group>"; };
@@ -2250,6 +2251,7 @@
 		E1D92B35437FE24D5DADC514 /* cometchat_white@3x-1.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "cometchat_white@3x-1.png"; path = "SampleApp/Assets.xcassets/cometchat_white.imageset/cometchat_white@3x-1.png"; sourceTree = "<group>"; };
 		E265983441C5CE64756C6BB2 /* NetworkUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkUtils.swift; path = CometChatUIKitSwift/Components/Shared/Utils/NetworkUtils.swift; sourceTree = "<group>"; };
 		E27711940E3B63613CF7C6C9 /* 256.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = 256.png; path = SampleAppPushNotificationAPNs/Assets.xcassets/AppIcon.appiconset/256.png; sourceTree = "<group>"; };
+		E2CC97DA9BD2DD9D53222FA0 /* SplitScreenViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SplitScreenViewController.swift; path = "SampleAppPushNotificationAPNs/View Controllers/SplitScreenViewController.swift"; sourceTree = "<group>"; };
 		E2E01E2C7ECC2854724C6447 /* CallingExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CallingExtension.swift; path = "CometChatUIKitSwift/Components/Calls/Call Extension/CallingExtension.swift"; sourceTree = "<group>"; };
 		E2F52DF40D250D9838B079A8 /* Icon-App-20x20@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Icon-App-20x20@3x.png"; path = "SampleAppPushNotificationAPNs/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png"; sourceTree = "<group>"; };
 		E30434A21984D623798FF31F /* messages-forward-message.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "messages-forward-message.png"; path = "CometChatUIKitSwift/Components/Resources/messages-assets.xcassets/messages-forward-message.imageset/messages-forward-message.png"; sourceTree = "<group>"; };
@@ -5425,6 +5427,8 @@
 				638E9E4E57470E4A856F2B08 /* 58 1.png */,
 				035F29BCD7F2C38B5E946571 /* 80 1.png */,
 				6751B07A56752349132F8A4C /* appstore.png */,
+				6E1F66AFA36F00C73D715BA4 /* SplitScreenViewController.swift */,
+				E2CC97DA9BD2DD9D53222FA0 /* SplitScreenViewController.swift */,
 			);
 			sourceTree = "<group>";
 		};
