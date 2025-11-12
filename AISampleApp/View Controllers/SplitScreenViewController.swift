@@ -6,7 +6,6 @@
 //
 
 import CometChatUIKitSwift
-import UIKit
 
 class SplitViewController: UISplitViewController, UISplitViewControllerDelegate {
     

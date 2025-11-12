@@ -80,16 +80,16 @@ class HomeScreenViewController: UIViewController {
                 if let image = image {
                     avatarButton.setImage(image, for: .normal)
                     avatarButton.imageView?.contentMode = .scaleAspectFill
+                } else {
+                    let fallback = UIImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
+                    avatarButton.setImage(AvatarUtils.setImageSnap(
+                        text: CometChat.getLoggedInUser()?.name ?? "",
+                        color: CometChatTheme.primaryColor,
+                        textAttributes: [.font: CometChatTypography.Caption1.medium, .foregroundColor: CometChatTheme.white],
+                        view: fallback
+                    ), for: .normal)
                 }
             }
-        }else {
-            let fallback = UIImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
-            avatarButton.setImage(AvatarUtils.setImageSnap(
-                text: CometChat.getLoggedInUser()?.name ?? "",
-                color: CometChatTheme.primaryColor,
-                textAttributes: [.font: CometChatTypography.Caption1.medium, .foregroundColor: CometChatTheme.white],
-                view: fallback
-            ), for: .normal)
         }
 
         // Menu (Create Conversation + Logout)
