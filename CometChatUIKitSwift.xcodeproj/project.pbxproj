@@ -332,6 +332,7 @@
 		2D52B9210F34523C67EF244A /* noComment@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "noComment@2x.png"; path = "CometChatUIKitSwift/Components/Resources/messages-assets.xcassets/error-icon.imageset/noComment@2x.png"; sourceTree = "<group>"; };
 		2D7607086CAE179065F184F8 /* Icon 3@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Icon 3@2x.png"; path = "CometChatUIKitSwift/Components/Calls/Resources/calls-assets.xcassets/video-call.imageset/Icon 3@2x.png"; sourceTree = "<group>"; };
 		2DAE741C445B37C1846F8409 /* photo-library@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "photo-library@2x.png"; path = "CometChatUIKitSwift/Components/Resources/messages-assets.xcassets/photo-library.imageset/photo-library@2x.png"; sourceTree = "<group>"; };
+		2DC8E9C30FD3A7E828705377 /* GoogleService-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "SampleApp/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2DE869092101D066C8FF493E /* Contents.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; name = Contents.json; path = "CometChatUIKitSwift/Components/Resources/messages-assets.xcassets/ai_suggest_reply.imageset/Contents.json"; sourceTree = "<group>"; };
 		2DE8FBFD9E81992D40E187E5 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UserDetailsViewController.swift; path = "SampleAppPushNotificationAPNs/View Controllers/CometChat Components/DetailsPage/UserDetailsViewController.swift"; sourceTree = "<group>"; };
 		2DFD3A4A925D4551DED53C88 /* 512.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = 512.png; path = SampleApp/Assets.xcassets/AppIcon.appiconset/512.png; sourceTree = "<group>"; };
@@ -2969,6 +2970,7 @@
 				7F8AA38B7CD77510C267A5AA /* Base_Icon@3x.png */,
 				AC977F512B33D1CEA2BE7D9F /* Contents.json */,
 				254FC6EA7D3F44C6F46BB038 /* GoogleService-Info.plist */,
+				2DC8E9C30FD3A7E828705377 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
